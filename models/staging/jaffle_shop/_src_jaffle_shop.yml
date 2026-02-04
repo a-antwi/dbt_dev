@@ -1,0 +1,36 @@
+sources:
+  - name: jaffle_shop
+    database: raw  
+    schema: jaffle_shop
+    description: a clone of a postgres application database.
+    
+    tables:
+      - name: orders
+        description: raw orders data.
+        columns:
+          - name: order_id
+            description: primary key
+            data_tests: #checking source data integrity and quality
+              - unique
+              - not_null
+        config:
+          freshness:
+            warn_after:
+              count: 12
+              period: hour
+            error_after:
+              count: 1
+              period: day
+          loaded_at_field: _etl_loaded_at
+
+      - name: customers
+        description: raw customers data.
+        columns:
+          - name: customer_id
+            description: primary key
+            data_tests: #checking source data integrity and quality
+              - not_null
+              - unique
+        freshness: null
+
+# dbt test --select source:jaffleshop
