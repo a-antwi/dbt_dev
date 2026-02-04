@@ -8,9 +8,9 @@ sources:
       - name: orders
         description: raw orders data.
         columns:
-          - name: order_id
+          - name: id
             description: primary key
-            data_tests: #checking source data integrity and quality
+            data_tests: 
               - unique
               - not_null
         config:
@@ -26,9 +26,9 @@ sources:
       - name: customers
         description: raw customers data.
         columns:
-          - name: customer_id
+          - name: id
             description: primary key
-            data_tests: #checking source data integrity and quality
+            data_tests:
               - not_null
               - unique
         freshness: null
