@@ -5,6 +5,11 @@ sources:
     
     tables:
       - name: orders
+        columns:
+          - name: order_id
+            data_tests: #checking source data integrity and quality
+              - unique
+              - not_null
         config:
           freshness:
             warn_after:
@@ -16,4 +21,11 @@ sources:
           loaded_at_field: _etl_loaded_at
 
       - name: customers
+        columns:
+          - name: customer_id
+            data_tests: #checking source data integrity and quality
+              - not_null
+              - unique
         freshness: null
+        
+# dbt test --select source:jaffleshop
